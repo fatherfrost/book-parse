@@ -42,9 +42,8 @@ export class BooksService {
         bookObject['author'] =  res['rdf:RDF']['pgterms:ebook'][0]['dcterms:creator'][0]['pgterms:agent'][0]['pgterms:name'][0] !== undefined ? res['rdf:RDF']['pgterms:ebook'][0]['dcterms:creator'][0]['pgterms:agent'][0]['pgterms:name'][0] : '';
         bookObject['license'] =  res['rdf:RDF']['pgterms:ebook'][0]['dcterms:license'][0] !== undefined ? res['rdf:RDF']['pgterms:ebook'][0]['dcterms:license'][0]['$'] : '';
         bookObject['subject'] =  res['rdf:RDF']['pgterms:ebook'][0]['dcterms:subject'][0]['rdf:Description'][0]['rdf:value'] !== undefined ? res['rdf:RDF']['pgterms:ebook'][0]['dcterms:subject'][0]['rdf:Description'][0]['rdf:value'] :'';
-        bookObject['language'] =  res['rdf:RDF']['pgterms:ebook'][0]['dcterms:language'][0] !== undefined ? res['rdf:RDF']['pgterms:ebook'][0]['dcterms:language'][0]['rdf:Description'][0]['rdf:value'][0] : '';
-        const obj = bookObject['language'];
-        bookObject['language'] = obj[Object.keys(obj)[0]];
+        const languageObj = res['rdf:RDF']['pgterms:ebook'][0]['dcterms:language'][0] !== undefined ? res['rdf:RDF']['pgterms:ebook'][0]['dcterms:language'][0]['rdf:Description'][0]['rdf:value'][0] : '';
+        bookObject['language'] = languageObj[Object.keys(languageObj)[0]];
         resolve(bookObject);
       });
     }).then(result => {
