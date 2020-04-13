@@ -15,7 +15,7 @@ export class BooksService {
     const bookData = await this.readFile('./cache/epub/2/pg2.rdf');
     const bookInfo =  await this.extractDataFromRdf(bookData);
     const saveBook = new this.bookModel(bookInfo);
-    return saveBook.save();
+    return await saveBook.save();
   }
 
   async parseAll() {
